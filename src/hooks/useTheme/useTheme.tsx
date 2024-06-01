@@ -1,6 +1,8 @@
 import { useCallback, useEffect } from "react";
-import { Theme, useSettingsStore } from "../../shared/stores/settings-store";
-import { DARK_CLASS, LOCAL_STORAGE_KEY } from "../../constants";
+import { useSettingsStore } from "../../shared/stores/settings-store";
+import { DARK_CLASS, LOCAL_THEME_STORAGE_KEY } from "../../constants";
+
+import { Theme } from "../../shared/enums/Theme";
 
 export const useTheme = () => {
   const { theme, setSettings } = useSettingsStore();
@@ -8,7 +10,7 @@ export const useTheme = () => {
   // Synchronize theme with localStorage on mount
   useEffect(() => {
     const storedTheme =
-      (localStorage.getItem(LOCAL_STORAGE_KEY) as Theme) || Theme.Light;
+      (localStorage.getItem(LOCAL_THEME_STORAGE_KEY) as Theme) || Theme.Light;
 
     if (storedTheme) {
       setSettings({ theme: storedTheme });
@@ -27,13 +29,13 @@ export const useTheme = () => {
     if (isDark) {
       document.body.classList.remove(DARK_CLASS);
       setSettings({ theme: Theme.Light });
-      localStorage.setItem(LOCAL_STORAGE_KEY, Theme.Light);
+      localStorage.setItem(LOCAL_THEME_STORAGE_KEY, Theme.Light);
 
       return Theme.Light;
     } else {
       document.body.classList.add(DARK_CLASS);
       setSettings({ theme: Theme.Dark });
-      localStorage.setItem(LOCAL_STORAGE_KEY, Theme.Dark);
+      localStorage.setItem(LOCAL_THEME_STORAGE_KEY, Theme.Dark);
 
       return Theme.Dark;
     }

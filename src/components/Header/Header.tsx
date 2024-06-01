@@ -1,5 +1,5 @@
 import Logo from "../../shared/assets/images/Logo.tsx";
-import { Dropdown } from "../Inputs/Dropdown/Dropdown.tsx";
+import { FontChanger } from "./FontChanger.tsx";
 
 import { ThemeChanger } from "./ThemeChanger.tsx";
 
@@ -16,27 +16,8 @@ export default function Header() {
       </div>
 
       <section className="flex gap-4">
-        <Dropdown
-          name="font-chooser"
-          options={[
-            {
-              label: "Sans Serif",
-              value: "sans-serif",
-            },
-            {
-              label: "Serif",
-              value: "serif",
-            },
-            {
-              label: "Mono",
-              value: "monospace",
-            },
-          ]}
-          value={"Teste"}
-          onOptionClick={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
+        <FontChanger />
+        <div className="bg-divider w-[1px] rotate-180" />
         <ThemeChanger />
       </section>
     </header>

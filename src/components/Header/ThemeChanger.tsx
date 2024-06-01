@@ -4,7 +4,7 @@ import { useTheme } from "../../hooks/useTheme/useTheme";
 import { Switch } from "../Inputs/Switch/Switch";
 
 import MoonIcon from "../../shared/assets/images/MoonIcon";
-import { Theme } from "../../shared/stores/settings-store";
+import { Theme } from "../../shared/enums/Theme";
 
 export function ThemeChanger() {
   const { theme, toggleTheme } = useTheme();
