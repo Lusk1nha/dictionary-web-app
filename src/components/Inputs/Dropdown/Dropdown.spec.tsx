@@ -14,7 +14,7 @@ describe("Dropdown", () => {
           { label: "Option 3", value: "option3" },
         ]}
         value="option1"
-        onClick={function (): void {
+        onOptionClick={function (): void {
           throw new Error("Function not implemented.");
         }}
       />

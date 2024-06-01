@@ -23,23 +23,27 @@ export const useTheme = () => {
     }
   }, [theme, setSettings]);
 
-  const toggleTheme = useCallback(() => {
-    const isDark = theme === Theme.Dark;
+  const toggleTheme = useCallback(
+    (passedTheme?: Theme) => {
+      const isDark = (passedTheme ?? theme) === Theme.Dark;
+      console.log(passedTheme ?? theme)
 
-    if (isDark) {
-      document.body.classList.remove(DARK_CLASS);
-      setSettings({ theme: Theme.Light });
-      localStorage.setItem(LOCAL_THEME_STORAGE_KEY, Theme.Light);
+      if (isDark) {
+        document.body.classList.remove(DARK_CLASS);
+        setSettings({ theme: Theme.Light });
+        localStorage.setItem(LOCAL_THEME_STORAGE_KEY, Theme.Light);
 
-      return Theme.Light;
-    } else {
-      document.body.classList.add(DARK_CLASS);
-      setSettings({ theme: Theme.Dark });
-      localStorage.setItem(LOCAL_THEME_STORAGE_KEY, Theme.Dark);
+        return Theme.Light;
+      } else {
+        document.body.classList.add(DARK_CLASS);
+        setSettings({ theme: Theme.Dark });
+        localStorage.setItem(LOCAL_THEME_STORAGE_KEY, Theme.Dark);
 
-      return Theme.Dark;
-    }
-  }, [theme, setSettings]);
+        return Theme.Dark;
+      }
+    },
+    [theme, setSettings]
+  );
 
   return {
     theme,

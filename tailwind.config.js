@@ -42,6 +42,24 @@ export default {
             active: "#A445ED",
           },
         },
+
+        searchbox: {
+          background: {
+            light: "#F4F4F4",
+            dark: "#1F1F1F",
+          },
+          text: {
+            light: "#2D2D2D",
+            dark: "#FFFFFF",
+          },
+          placeholder: {
+            light: "#2D2D2D40",
+            dark: "#ffffff40",
+          },
+          error: "#FF5252",
+          active: "#A445ED",
+          caret: "#A445ED",
+        },
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],

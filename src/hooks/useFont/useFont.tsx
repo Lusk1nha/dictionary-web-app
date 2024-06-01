@@ -15,10 +15,13 @@ export default function useFont() {
     [font]
   );
 
-  const getTailwindFont = useCallback(() => {
-    const tailwind = getFontFamily(font);
-    return tailwind;
-  }, [font]);
+  const getTailwindFont = useCallback(
+    (passedFont?: Font) => {
+      const tailwind = getFontFamily(passedFont ?? font);
+      return tailwind;
+    },
+    [font]
+  );
 
   return { font, getTailwindFont, setFont };
 }

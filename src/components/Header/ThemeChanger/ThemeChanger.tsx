@@ -1,10 +1,9 @@
 import classNames from "classnames";
 
-import { useTheme } from "../../hooks/useTheme/useTheme";
-import { Switch } from "../Inputs/Switch/Switch";
-
-import MoonIcon from "../../shared/assets/images/MoonIcon";
-import { Theme } from "../../shared/enums/Theme";
+import { useTheme } from "../../../hooks/useTheme/useTheme";
+import MoonIcon from "../../../shared/assets/images/MoonIcon";
+import { Theme } from "../../../shared/enums/Theme";
+import { Switch } from "../../Inputs/Switch/Switch";
 
 export function ThemeChanger() {
   const { theme, toggleTheme } = useTheme();

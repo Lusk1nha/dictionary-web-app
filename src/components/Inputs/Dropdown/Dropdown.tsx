@@ -29,7 +29,12 @@ export function Dropdown(props: IDropdownProps) {
   );
 
   return (
-    <div role="combobox" className=" relative" aria-label="Dropdown menu">
+    <div
+      role="combobox"
+      className="relative"
+      title="Click here to open the dropdown menu"
+      aria-label="Dropdown menu"
+    >
       <button
         name={name}
         className="flex items-center gap-4 cursor-pointer"

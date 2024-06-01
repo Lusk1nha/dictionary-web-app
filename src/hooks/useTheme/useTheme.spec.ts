@@ -1,18 +1,18 @@
 import { describe, expect, it } from "vitest";
-import { Theme } from "../../shared/stores/settings-store";
+
 import { renderHook } from "@testing-library/react";
 import { useTheme } from "./useTheme";
+import { Theme } from "../../shared/enums/Theme";
 
 describe("useTheme", () => {
   it("should return an object with a toggleTheme function", () => {
-    const currentTheme = Theme.Light;
-
     const {
       result: {
         current: { toggleTheme },
       },
     } = renderHook(() => useTheme());
 
-    expect(toggleTheme(currentTheme)).toBe(Theme.Dark);
+    expect(toggleTheme(Theme.Light)).toBe(Theme.Dark);
+    expect(toggleTheme(Theme.Dark)).toBe(Theme.Light);
   });
 });

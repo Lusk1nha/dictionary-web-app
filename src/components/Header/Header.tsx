@@ -1,11 +1,11 @@
 import Logo from "../../shared/assets/images/Logo.tsx";
-import { FontChanger } from "./FontChanger.tsx";
+import { FontChanger } from "./FontChanger/FontChanger.tsx";
 
-import { ThemeChanger } from "./ThemeChanger.tsx";
+import { ThemeChanger } from "./ThemeChanger/ThemeChanger.tsx";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between">
+    <header className="h-8 flex items-center justify-between">
       <div
         role="img"
         className="stroke-logoIcon w-8 h-8"
@@ -15,7 +15,7 @@ export default function Header() {
         <Logo />
       </div>
 
-      <section className="flex gap-4">
+      <section className="h-full flex gap-4">
         <FontChanger />
         <div className="bg-divider w-[1px] rotate-180" />
         <ThemeChanger />

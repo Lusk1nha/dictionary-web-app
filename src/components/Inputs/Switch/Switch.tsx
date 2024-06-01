@@ -11,17 +11,18 @@ export function Switch(props: ISwitchProps) {
 
   return (
     <button
+      role="button"
+      name={name}
       type="button"
       aria-label="Switch button"
       title="Click here to switch"
-      name={name}
       className={classNames(
         "w-10 h-5 flex items-center p-[3px] rounded-[10px] transition-all cursor-pointer relative",
         active
           ? "bg-switch-active justify-end"
           : "bg-switch-inactive justify-start"
       )}
-      onClick={onClick}
+      onClick={() => onClick()}
     >
       <div
         className={classNames(

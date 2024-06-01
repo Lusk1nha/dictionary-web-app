@@ -1,6 +1,6 @@
-import useFont from "../../hooks/useFont/useFont";
-import { Font } from "../../shared/enums/Font";
-import { Dropdown } from "../Inputs/Dropdown/Dropdown";
+import useFont from "../../../hooks/useFont/useFont";
+import { Font } from "../../../shared/enums/Font";
+import { Dropdown } from "../../Inputs/Dropdown/Dropdown";
 
 const FONT_OPTIONS = [
   {
