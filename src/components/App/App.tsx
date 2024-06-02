@@ -1,21 +1,48 @@
-import { SearchWrapper } from "../FormWrapper/SearchWrapper";
+import {
+  AppSearchValidationSchema,
+  AppSearchValidationValues,
+} from "../../shared/schemas/AppSearchValidation";
+
+import { SearchWrapper } from "../SearchWrapper/SearchWrapper";
 import Header from "../Header/Header";
-import { SearchBox } from "../Inputs/SearchBox/SearchBox";
+
+import { Search } from "../Search/Search";
+import { Outlet, useNavigate, useSearchParams } from "react-router-dom";
 
 function App() {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const search = searchParams.get("search");
+
+  async function handleSearch(values: AppSearchValidationValues) {
+    const { search_text } = values;
+
+    if (!AppSearchValidationSchema.parse(values)) {
+      throw new Error("Invalid search text");
+    }
+
+    const trimmedSearchText = search_text?.trim();
+
+    navigate(`/word?search=${trimmedSearchText}`);
+  }
+
   return (
-    <SearchWrapper>
-      <div className="bg-screen-light dark:bg-screen-dark w-full h-screen flex items-center justify-center">
-        <div className="max-w-[736px] w-full h-full flex flex-col p-6 md:px-10 md:py-14 transition-colors">
+    <SearchWrapper defaultValues={{ search_text: search || "" }}>
+      <div className="bg-screen-light dark:bg-screen-dark w-full min-h-screen h-full flex items-start justify-center">
+        <div className="max-w-[736px] w-full h-full flex flex-col p-6 md:px-10 md:pt-14 transition-colors">
           <Header />
 
-          <main className="pt-6">
-            <form className="w-full">
-              <SearchBox
-                name="text_to_search"
-                placeholder="Search for any word…"
-              />
-            </form>
+          <main className="pt-6 flex flex-col grow">
+            <Search
+              name="search_text"
+              placeholder="Search for any word…"
+              onSearch={handleSearch}
+            />
+
+            <div className="h-full pt-11">
+              <Outlet />
+            </div>
           </main>
         </div>
       </div>

@@ -37,7 +37,7 @@ export function Dropdown(props: IDropdownProps) {
     >
       <button
         name={name}
-        className="flex items-center gap-4 cursor-pointer"
+        className="w-[100px] flex items-center justify-end gap-4 cursor-pointer"
         onClick={handleDropdownClick}
       >
         <div

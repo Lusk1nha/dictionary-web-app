@@ -5,6 +5,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        hightlight: "#A445ED",
+
         // Background colors
         screen: {
           light: "#ffffff",
@@ -43,6 +45,7 @@ export default {
           },
         },
 
+        // Searchbox colors
         searchbox: {
           background: {
             light: "#F4F4F4",
@@ -59,6 +62,45 @@ export default {
           error: "#FF5252",
           active: "#A445ED",
           caret: "#A445ED",
+        },
+
+        // Not defined page colors
+        notDefined: {
+          title: {
+            light: "#2D2D2D",
+            dark: "#FFFFFF",
+          },
+          text: "#757575",
+        },
+
+        definition: {
+          word: {
+            light: "#2D2D2D",
+            dark: "#FFFFFF",
+          },
+          phonetic: "#A445ED",
+          noun: {
+            light: "#2D2D2D",
+            dark: "#FFFFFF",
+          },
+          divisor: {
+            light: "#E9E9E9",
+            dark: "#3A3A3A",
+          },
+          secondary: "#757575",
+          list: {
+            light: "#2D2D2D",
+            dark: "#FFFFFF",
+          },
+          dot: "#8F19E8",
+          example: "#757575",
+          source: "#757575",
+          link: {
+            light: "#2D2D2D",
+            dark: "#FFFFFF",
+          },
+          newwindow: "#757575",
+          synonym: "#A445ED",
         },
       },
       fontFamily: {

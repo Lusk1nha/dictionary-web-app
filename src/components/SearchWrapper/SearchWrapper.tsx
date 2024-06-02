@@ -15,7 +15,7 @@ export function SearchWrapper(props: ISearchWrapperProps) {
 
   const methods = useForm<AppSearchValidationValues>({
     defaultValues: {
-      text_to_search: "Keyboard",
+      search_text: "",
     },
     mode: "all",
     resolver: zodResolver(AppSearchValidationSchema),

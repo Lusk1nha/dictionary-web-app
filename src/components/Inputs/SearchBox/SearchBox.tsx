@@ -2,6 +2,7 @@ import classNames from "classnames";
 import useFont from "../../../hooks/useFont/useFont";
 import { SearchIcon } from "../../../shared/assets/images/SearchIcon";
 import { Controller, useFormContext } from "react-hook-form";
+import { useRef } from "react";
 
 interface ISearchBoxProps {
   name: string;
@@ -10,13 +11,15 @@ interface ISearchBoxProps {
 }
 
 export function SearchBox(props: ISearchBoxProps) {
-  const { name, placeholder, onSearch } = props;
+  const { name, placeholder } = props;
 
   const { control } = useFormContext();
 
   const { getTailwindFont } = useFont();
 
   const font = getTailwindFont();
+
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <Controller
@@ -53,18 +56,18 @@ export function SearchBox(props: ISearchBoxProps) {
                 onChange(value);
               }}
               onKeyPress={(e) => {
-                if (e.key === "Enter" && onSearch && value?.length > 0) {
-                  onSearch();
+                if (e.key === "Enter" && submitButtonRef.current) {
+                  submitButtonRef.current.click();
                 }
               }}
             />
 
             <button
+              ref={submitButtonRef}
               title="Search button"
               aria-label="Search button for searching the content"
-              type="button"
+              type="submit"
               className="flex items-center justify-center"
-              onClick={onSearch}
             >
               <SearchIcon />
             </button>
