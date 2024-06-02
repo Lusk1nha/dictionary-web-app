@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { WordPage } from "./WordPage";
 import { TypeSomething } from "./TypeSomething";
 import { Urls } from "../shared/enums/Urls";
-import { NotDefined } from "../components/NotDefined/NotDefined";
+import { NotDefined } from "./NotDefined";
 
 export function Router() {
   return (

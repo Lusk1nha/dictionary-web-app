@@ -1,10 +1,9 @@
 import classNames from "classnames";
-import useFont from "../../hooks/useFont/useFont";
-import { Link, useNavigate } from "react-router-dom";
-import { Urls } from "../../shared/enums/Urls";
+import useFont from "../hooks/useFont/useFont";
+import { Link } from "react-router-dom";
+import { Urls } from "../shared/enums/Urls";
 
 export function NotDefined() {
-  const navigate = useNavigate();
   const { getTailwindFont } = useFont();
 
   const font = getTailwindFont();
@@ -28,7 +27,12 @@ export function NotDefined() {
         </p>
 
         <div className="pt-4">
-          <Link className="text-hightlight font-normal text-base md:text-lg text-left leading-6 underline" to={Urls.Home}>Click here to go back to the home page</Link>
+          <Link
+            className="text-hightlight font-normal text-base md:text-lg text-left leading-6 underline"
+            to={Urls.Home}
+          >
+            Click here to go back to the home page
+          </Link>
         </div>
       </div>
     </div>
