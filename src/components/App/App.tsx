@@ -8,6 +8,7 @@ import Header from "../Header/Header";
 
 import { Search } from "../Search/Search";
 import { Outlet, useNavigate, useSearchParams } from "react-router-dom";
+import { Footer } from "../Footer/Footer";
 
 function App() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function App() {
 
   return (
     <SearchWrapper defaultValues={{ search_text: search || "" }}>
-      <div className="bg-screen-light dark:bg-screen-dark w-full min-h-screen h-full flex items-start justify-center">
+      <div className="bg-screen-light dark:bg-screen-dark w-full h-full flex items-start justify-center">
         <div className="max-w-[736px] w-full h-full flex flex-col p-6 md:px-10 md:pt-14 transition-colors">
           <Header />
 
@@ -44,6 +45,8 @@ function App() {
               <Outlet />
             </div>
           </main>
+
+          <Footer />
         </div>
       </div>
     </SearchWrapper>

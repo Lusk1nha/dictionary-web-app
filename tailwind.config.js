@@ -5,6 +5,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        signature: {
+          light: "#2D2D2D",
+          dark: "#FFFFFF",
+        },
+
         hightlight: "#A445ED",
 
         // Background colors

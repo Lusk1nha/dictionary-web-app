@@ -6,17 +6,20 @@ import { Notation } from "./components/Notation";
 import { NewWindowIcon } from "../../shared/assets/images/NewWindowIcon";
 
 import { randomizePhonetic } from "./../../shared/helpers/definition-helper";
+import { useState } from "react";
 
 interface IDefinitionProps extends WordDefinition {}
 
 export function Definition(props: IDefinitionProps) {
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+
   const { word, phonetic, phonetics, meanings, sourceUrls } = props;
 
   const { getTailwindFont } = useFont();
 
   const font = getTailwindFont();
 
-  function handlePlaySound() {
+  async function handlePlaySound() {
     const phonetic = phonetics?.filter((phonetic) => phonetic.audio);
 
     if (phonetic?.length === 0) return;
@@ -24,8 +27,16 @@ export function Definition(props: IDefinitionProps) {
     const randomPhonetic = randomizePhonetic(phonetic);
 
     try {
+      setIsPlayingAudio(true);
       const audio = new Audio(randomPhonetic.audio);
-      audio.play();
+      await audio.play();
+
+      const interval = setInterval(() => {
+        if (audio.ended) {
+          setIsPlayingAudio(false);
+          clearInterval(interval);
+        }
+      }, 1000);
     } catch (error) {
       throw new Error("Failed to play audio");
     }
@@ -38,9 +49,9 @@ export function Definition(props: IDefinitionProps) {
         font ? font : ""
       )}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-4">
         <div className="flex flex-col gap-2">
-          <h1 className="text-definition-word-light dark:text-definition-word-dark font-bold text-[32px] md:text-[64px]">
+          <h1 className="text-definition-word-light dark:text-definition-word-dark font-bold text-[32px] md:text-[64px] break-all">
             {word}
           </h1>
           <h2 className="text-definition-phonetic text-lg md:text-2xl font-normal leading-6">
@@ -50,11 +61,25 @@ export function Definition(props: IDefinitionProps) {
 
         <div className="flex items-center justify-center">
           <button
-            className="w-12 h-12 md:w-[75px] md:h-[75px] flex items-center justify-center"
+            className="group w-12 h-12 md:w-[75px] md:h-[75px] flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed"
             type="button"
             onClick={() => handlePlaySound()}
+            disabled={
+              !phonetics?.some((phonetic) => phonetic.audio) || isPlayingAudio
+            }
           >
-            <PlayIcon />
+            <PlayIcon
+              svgClassName={classNames(
+                isPlayingAudio
+                  ? "fill-red-300"
+                  : "fill-[#a445ed40] group-hover:fill-[#A445ED]"
+              )}
+              pathClassName={classNames(
+                isPlayingAudio
+                  ? "fill-white"
+                  : "fill-[#a445ed] group-hover:fill-white"
+              )}
+            />
           </button>
         </div>
       </div>
@@ -129,7 +154,7 @@ export function Definition(props: IDefinitionProps) {
                   aria-label="Open in new window"
                   href={url}
                   target="_blank"
-                  className="flex items-center text-sm stroke-definition-newwindow text-definition-link-light dark:text-definition-link-dark underline gap-[9px]"
+                  className="flex items-center text-sm stroke-definition-newwindow text-definition-link-light dark:text-definition-link-dark underline gap-[9px] break-all"
                 >
                   <p>{url}</p>
                   <NewWindowIcon />

@@ -26,7 +26,6 @@ export const useTheme = () => {
   const toggleTheme = useCallback(
     (passedTheme?: Theme) => {
       const isDark = (passedTheme ?? theme) === Theme.Dark;
-      console.log(passedTheme ?? theme)
 
       if (isDark) {
         document.body.classList.remove(DARK_CLASS);
